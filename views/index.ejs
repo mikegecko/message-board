@@ -9,10 +9,10 @@
     <p>Welcome to the <%= title %></p>
     <a href="/new">New Message</a>
     <h4>Messages</h4>
-    <ul>
+    
       <% messages.forEach(message => { %>
-        <li><%= message.text + ' - ' + message.user + ' : '+ message.added %></li>
+        <div class="message"><div class="message-header"><%= message.user %></div><div class="message-content"><%= message.text %><div class="message-footer"><%=  message.added %></div></div></div>
       <% }); %>
-    </ul>
+    
   </body>
 </html>
