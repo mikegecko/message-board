@@ -27,4 +27,8 @@ async function saveModel(modelObj){
     }
 }
 
-module.exports = {saveModel, saveMessage};
+async function getMessages(){
+
+}
+
+module.exports = {saveModel, saveMessage, getMessages};
