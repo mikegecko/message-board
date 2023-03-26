@@ -1,3 +1,6 @@
+require('dotenv').config()
+console.log(process.env) // remove this after you've confirmed it is working
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
