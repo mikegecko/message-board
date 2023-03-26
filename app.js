@@ -1,3 +1,6 @@
+require('dotenv').config()
+console.log(process.env) // remove this after you've confirmed it is working
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -7,6 +10,17 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const newRouter = require('./routes/new');
+
+
+const { MongoClient, ServerApiVersion } = require('mongodb');
+const uri = `mongodb+srv://mjgeko:${process.env.MONGODB_KEY}@cluster0.orfj6ha.mongodb.net/?retryWrites=true&w=majority`;
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+client.connect(err => {
+  const collection = client.db("test").collection("devices");
+  // perform actions on the collection object
+  client.close();
+});
+
 
 var app = express();
 
