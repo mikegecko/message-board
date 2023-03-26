@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-
-//Mongoose Setup
+const MessageModel = require('/models/message');
+//Mongoose Setup - runs when require is called
 mongoose.set('strictQuery', false);
 const mongoDB = `mongodb+srv://mjgeko:${process.env.MONGODB_KEY}@cluster0.orfj6ha.mongodb.net/?retryWrites=true&w=majority`;
 main().catch(err => console.log(err));
@@ -8,8 +8,14 @@ async function main() {
   await mongoose.connect(mongoDB);
 }
 
+//example usage
+const newMessage = new MessageModel({
+    content: "This is a test",
+    author:'Admin',
+    added: new Date(),
+})
 
-
+await saveModel(newMessage);
 
 async function saveModel(modelObj){
     try {
@@ -18,3 +24,5 @@ async function saveModel(modelObj){
       console.log(error);
     }
   }
+
+  module.exports = {saveModel};
