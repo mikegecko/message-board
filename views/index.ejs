@@ -11,7 +11,7 @@
     <h4>Messages</h4>
     
       <% messages.forEach(message => { %>
-        <div class="message"><div class="message-header"><%= message.user %></div><div class="message-content"><%= message.text %><div class="message-footer"><%=  message.added %></div></div></div>
+        <div class="message"><div class="message-header"><%= message.author %></div><div class="message-content"><%= message.content %><div class="message-footer"><%=  message.added %></div></div></div>
       <% }); %>
     
   </body>

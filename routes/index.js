@@ -1,31 +1,22 @@
 var express = require('express');
 var router = express.Router();
-const { saveMessage } = require('../db.js');
-
-const messages = [
-  {
-    text:"Hi there!",
-    user: "Bobathy",
-    added: new Date()
-  },
-  {
-    text: "Hello world!",
-    user: "Max",
-    added: new Date()
-  }
-];
+const { saveMessage, getMessages } = require('../db.js');
 
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Message Board', messages: messages });
+router.get('/', async (req, res, next) => {
+  try {
+    const messages = await getMessages(); //Get messages from DB
+    res.render('index', { title: 'Message Board', messages: messages });
+  } catch(err){
+    console.log(err);
+  }
 });
 
-//I dunno if this works right
-router.post('/new', (req,res,next) => {
+router.post('/new', async (req,res,next) => {
   const data = req.body;
-  messages.push({text: data.messageText, user: data.authorText, added: new Date()})
-  saveMessage({text: data.messageText, user: data.authorText, added: new Date()})
+  const message = ({content: data.messageText, author: data.authorText, added: new Date()})
+  await saveMessage(message) //Save new message
   res.redirect('/');
 });
 

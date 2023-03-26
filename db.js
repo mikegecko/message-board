@@ -11,8 +11,8 @@ async function main() {
 
 async function saveMessage(obj) {
     const newMessage = new MessageModel({
-        content: obj.text,
-        author: obj.user,
+        content: obj.content,
+        author: obj.author,
         added: new Date(),
     })
     
@@ -28,7 +28,9 @@ async function saveModel(modelObj){
 }
 
 async function getMessages(){
-
+    const messages = await MessageModel.find();
+    console.log(messages);
+    return(messages);
 }
 
 module.exports = {saveModel, saveMessage, getMessages};
