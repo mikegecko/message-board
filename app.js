@@ -28,6 +28,17 @@ async function main() {
   await mongoose.connect(mongoDB);
 }
 
+// Message Schema setup
+const Schema = mongoose.Schema();
+const messageSchema = new Schema({
+  content: String,
+  author: String,
+  added: Date,
+})
+// Compile model from schema
+const MessageModel = mongoose.model("MessageModel", messageSchema);
+
+
 var app = express();
 
 // view engine setup
