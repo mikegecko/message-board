@@ -13,14 +13,13 @@ const newRouter = require('./routes/new');
 const mongoose = require('mongoose');
 const db = require('./db.js');
 
-//Mongoose Setup
-mongoose.set('strictQuery', false);
-const mongoDB = `mongodb+srv://mjgeko:${process.env.MONGODB_KEY}@cluster0.orfj6ha.mongodb.net/?retryWrites=true&w=majority`;
-main().catch(err => console.log(err));
-async function main() {
-  await mongoose.connect(mongoDB);
-}
+/*
+  Tasks:
+    1. Take user submission and add it to DB
+    2. On load update messages in index.js to hold db messages
 
+
+*/
 
 
 var app = express();
