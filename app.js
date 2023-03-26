@@ -10,16 +10,9 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const newRouter = require('./routes/new');
-const mongoose = require("mongoose");
-// OG MongoDB connection
-// const { MongoClient, ServerApiVersion } = require('mongodb');
-// const uri = `mongodb+srv://mjgeko:${process.env.MONGODB_KEY}@cluster0.orfj6ha.mongodb.net/?retryWrites=true&w=majority`;
-// const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
-// client.connect(err => {
-//   const collection = client.db("test").collection("devices");
-//   // perform actions on the collection object
-//   client.close();
-// });
+const mongoose = require('mongoose');
+const db = require('./db.js');
+
 //Mongoose Setup
 mongoose.set('strictQuery', false);
 const mongoDB = `mongodb+srv://mjgeko:${process.env.MONGODB_KEY}@cluster0.orfj6ha.mongodb.net/?retryWrites=true&w=majority`;
@@ -27,6 +20,8 @@ main().catch(err => console.log(err));
 async function main() {
   await mongoose.connect(mongoDB);
 }
+
+
 
 var app = express();
 
