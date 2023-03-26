@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+const { saveMessage } = require('../db.js');
 
 const messages = [
   {
@@ -24,7 +25,7 @@ router.get('/', function(req, res, next) {
 router.post('/new', (req,res,next) => {
   const data = req.body;
   messages.push({text: data.messageText, user: data.authorText, added: new Date()})
-
+  saveMessage({text: data.messageText, user: data.authorText, added: new Date()})
   res.redirect('/');
 });
 

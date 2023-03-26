@@ -21,7 +21,6 @@ const db = require('./db.js');
 
 */
 
-
 var app = express();
 
 // view engine setup
@@ -53,5 +52,10 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+
+
+
+
 
 module.exports = app;

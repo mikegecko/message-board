@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const MessageModel = require('/models/message');
+const MessageModel = require('./models/message.js');
 //Mongoose Setup - runs when require is called
 mongoose.set('strictQuery', false);
 const mongoDB = `mongodb+srv://mjgeko:${process.env.MONGODB_KEY}@cluster0.orfj6ha.mongodb.net/?retryWrites=true&w=majority`;
@@ -8,14 +8,16 @@ async function main() {
   await mongoose.connect(mongoDB);
 }
 
-//example usage
-const newMessage = new MessageModel({
-    content: "This is a test",
-    author:'Admin',
-    added: new Date(),
-})
 
-await saveModel(newMessage);
+async function saveMessage(obj) {
+    const newMessage = new MessageModel({
+        content: obj.text,
+        author: obj.user,
+        added: new Date(),
+    })
+    
+    await saveModel(newMessage);
+}
 
 async function saveModel(modelObj){
     try {
@@ -23,6 +25,6 @@ async function saveModel(modelObj){
     } catch (error) {
       console.log(error);
     }
-  }
+}
 
-  module.exports = {saveModel};
+module.exports = {saveModel, saveMessage};
