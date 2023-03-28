@@ -12,7 +12,7 @@ var usersRouter = require('./routes/users');
 const newRouter = require('./routes/new');
 const mongoose = require('mongoose');
 const db = require('./db.js');
-const port = process.env || 8080;
+const port = process.env.PORT || 8080;
 /*
   Tasks:
     1. Take user submission and add it to DB
